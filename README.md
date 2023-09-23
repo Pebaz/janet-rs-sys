@@ -23,3 +23,25 @@ fn main()
     assert_eq!(result, 0);
 }
 ```
+
+# Development Dependencies
+
+**Initialize submodules:**
+
+```
+$ git submodule update --init --recursive
+```
+
+**Windows:**
+
+*Visual Studio Developer Command Prompt is required to build on Windows during
+development of `janet-rs-sys`.*
+
+* Meson
+* Ninja
+
+**Ubuntu:**
+
+* Meson
+* Ninja
+* Clang
