@@ -2,12 +2,14 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-include!(concat!(env("OUT_DIR"), "/bindings.rs"));
-
-use std::ffi::*;
+include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+    use std::ffi::*;
+
+    #[test]
     fn test_janet_bindings() {
         let result = unsafe { janet_init() };
         assert_eq!(result, 0);
@@ -21,7 +23,7 @@ mod tests {
             .unwrap()
             .as_c_str()
             .as_ptr();
-        let result = unsafe { janet_dostring(env, code, file, sted::mem::null_mut()) };
+        let result = unsafe { janet_dostring(env, code, file, std::ptr::null_mut()) };
         assert_eq!(result, 0);
     }
 }
