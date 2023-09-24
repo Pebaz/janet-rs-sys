@@ -5,21 +5,22 @@ name: Main
 jobs:
   check:
     name: Check
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
+        with:
+          submodules: true
 
-      - name: Install stable toolchain
+      - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
           override: true
 
       - run: |
-          sudo apt-get update
-          sudo apt install meson clang
+          brew install meson gcc
 
       - name: Run cargo check
         uses: actions-rs/cargo@v1
@@ -28,21 +29,22 @@ jobs:
 
   test:
     name: Test Suite
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
+        with:
+          submodules: true
 
-      - name: Install stable toolchain
+      - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
           override: true
 
       - run: |
-          sudo apt-get update
-          sudo apt install meson clang
+          brew install meson gcc
 
       - name: Run cargo test
         uses: actions-rs/cargo@v1
@@ -51,22 +53,23 @@ jobs:
 
   lints:
     name: Lints
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
+        with:
+          submodules: true
 
-      - name: Install stable toolchain
+      - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
           override: true
           components: rustfmt, clippy
 
       - run: |
-          sudo apt-get update
-          sudo apt install meson clang
+          brew install meson gcc
 
       - name: Run cargo fmt
         uses: actions-rs/cargo@v1
@@ -79,3 +82,88 @@ jobs:
         with:
           command: clippy
           args: -- -D warnings
+
+
+# jobs:
+#   check:
+#     name: Check
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout sources
+#         uses: actions/checkout@v3
+#         with:
+#           submodules: true
+
+#       - name: Install stable toolchain
+#         uses: actions-rs/toolchain@v1
+#         with:
+#           profile: minimal
+#           toolchain: stable
+#           override: true
+
+#       - run: |
+#           sudo apt-get update
+#           sudo apt install meson
+
+#       - name: Run cargo check
+#         uses: actions-rs/cargo@v1
+#         with:
+#           command: check
+
+#   test:
+#     name: Test Suite
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout sources
+#         uses: actions/checkout@v3
+#         with:
+#           submodules: true
+
+#       - name: Install stable toolchain
+#         uses: actions-rs/toolchain@v1
+#         with:
+#           profile: minimal
+#           toolchain: stable
+#           override: true
+
+#       - run: |
+#           sudo apt-get update
+#           sudo apt install meson
+
+#       - name: Run cargo test
+#         uses: actions-rs/cargo@v1
+#         with:
+#           command: test
+
+#   lints:
+#     name: Lints
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout sources
+#         uses: actions/checkout@v3
+#         with:
+#           submodules: true
+
+#       - name: Install stable toolchain
+#         uses: actions-rs/toolchain@v1
+#         with:
+#           profile: minimal
+#           toolchain: stable
+#           override: true
+#           components: rustfmt, clippy
+
+#       - run: |
+#           sudo apt-get update
+#           sudo apt install meson
+
+#       - name: Run cargo fmt
+#         uses: actions-rs/cargo@v1
+#         with:
+#           command: fmt
+#           args: --all -- --check
+
+#       - name: Run cargo clippy
+#         uses: actions-rs/cargo@v1
+#         with:
+#           command: clippy
+#           args: -- -D warnings

@@ -18,7 +18,7 @@ mod tests
 
         let env = unsafe { janet_core_env(std::ptr::null_mut()) };
 
-        let code = CString::new(r#"(print "Hello World!")"#)
+        let code = CString::new("(print \"Hello World!\")")
             .unwrap()
             .as_c_str()
             .as_ptr();
