@@ -24,6 +24,14 @@ fn main()
 }
 ```
 
+# Note
+
+Currently, these bindings only work on Windows because of some strange errors
+arising from bindgen using `u128` on the FFI layer and subsequent warnings from
+the compiler because of this. It's likely that there isn't much left to do to
+get a Linux & MacOS version of this working but as of right now it proved too
+difficult to work out what was wrong on Nix platforms.
+
 ## Dependencies
 
 These are required when using `janet-rs-sys` in a project:
