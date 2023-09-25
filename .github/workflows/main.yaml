@@ -20,7 +20,7 @@ jobs:
           override: true
 
       - run: |
-          brew install meson gcc
+          brew install meson llvm
 
       - name: Run cargo check
         uses: actions-rs/cargo@v1
@@ -44,7 +44,7 @@ jobs:
           override: true
 
       - run: |
-          brew install meson gcc
+          brew install meson llvm
 
       - name: Run cargo test
         uses: actions-rs/cargo@v1
@@ -69,7 +69,7 @@ jobs:
           components: rustfmt, clippy
 
       - run: |
-          brew install meson gcc
+          brew install meson llvm
 
       - name: Run cargo fmt
         uses: actions-rs/cargo@v1
