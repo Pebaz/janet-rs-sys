@@ -2,6 +2,12 @@
 
 Raw Rust bindings to the Janet Programming Language
 
+![crates.io](https://img.shields.io/crates/v/janet-rs-sys.svg)
+
+```bash
+$ cargo add janet-rs-sys
+```
+
 ```rust
 use janet_rs_sys::*;
 use std::ffi::*;
