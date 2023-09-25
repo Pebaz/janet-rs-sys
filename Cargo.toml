@@ -7,8 +7,10 @@ description = "Raw Rust bindings to the Janet Programming Language"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-
 [build-dependencies]
 meson = "1.0.0"
 bindgen = "0.65.1"
+
+# Find clang.exe to find libclang.dll to set LIBCLANG_PATH for bindgen
+[target.'cfg(windows)'.build-dependencies]
+which = "4.4.2"

@@ -24,24 +24,23 @@ fn main()
 }
 ```
 
-# Development Dependencies
+## Dependencies
 
-**Initialize submodules:**
+These are required when using `janet-rs-sys` in a project:
+
+* Meson: Builds Janet
+* Ninja: Used by Meson
+* Clang: Bindgen uses libclang
+
+## Dev Dependencies
+
+### Initialize submodules
 
 ```
 $ git submodule update --init --recursive
 ```
 
-**Windows:**
+### Windows
 
-*Visual Studio Developer Command Prompt is required to build on Windows during
-development of `janet-rs-sys`.*
-
-* Meson
-* Ninja
-
-**Ubuntu:**
-
-* Meson
-* Ninja
-* Clang
+**Visual Studio Developer Command Prompt is required to build on Windows during
+development of `janet-rs-sys`.**
